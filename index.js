@@ -6,7 +6,9 @@ class Freelancer  {
     }
 }
 
-const freelancers = [
+const freelancers = [];
+
+const importFreelancers = [
   { name: "Dr. Slice", price: 25, occupation: "gardener" },
   { name: "Dr. Pressure", price: 51, occupation: "programmer" },
   { name: "Prof. Possibility", price: 43, occupation: "teacher" },
@@ -18,6 +20,7 @@ const freelancers = [
 ];
 
 const displayFreelancers = () => {
+	document.body.innerHTML = "";
 	const body = document.body;
 	const topTitle = document.createElement("h3");
 	topTitle.append("Freelancer Forum");
@@ -62,4 +65,18 @@ const getAveragePrice = function (freelancers) {
 	return accum;
 }
 
-displayFreelancers();
+function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+const run = async () => {
+	displayFreelancers();
+	await sleep(1000);
+	for (let freelancer of importFreelancers) {
+		freelancers.push(freelancer);
+		displayFreelancers();
+		await sleep(1000);
+	}
+}
+
+run();
