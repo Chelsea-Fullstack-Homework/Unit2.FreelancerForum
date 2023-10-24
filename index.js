@@ -60,9 +60,17 @@ const appendFreelancerInfo = (freelancer) => {
 }
 
 const getAveragePrice = function (freelancers) {
+	if (freelancers.length === 0) {
+		return 0;
+	}
+	
 	let accum = 0;
-	for (let i of freelancers) accum += i.price; 
-	return accum;
+	for (let i of freelancers) {
+		accum = (accum + i.price);
+	} 
+	
+	accum = accum/freelancers.length;
+	return accum.toFixed(2);
 }
 
 function sleep(ms) {
